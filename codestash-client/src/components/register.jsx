@@ -47,7 +47,7 @@ function Register() {
                 </div>
                 {errorMessage && <p className='text-rose-500 font-mukta text-xs italic mb-3'>{errorMessage}</p>}
                 <div className='mb-4'>
-                    <button className='text-center w-full font-mukta font-medium border py-1.5 rounded-md bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-800 hover:bg-opacity-90 dark:hover:bg-opacity-90'>
+                    <button className='text-center text-xs lg:text-sm w-full font-mukta font-medium border py-1.5 rounded-md bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-800 hover:bg-opacity-90 dark:hover:bg-opacity-90'>
                         Register
                     </button>
                 </div>
