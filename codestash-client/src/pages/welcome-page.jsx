@@ -5,9 +5,10 @@ import { LuMoveRight } from "react-icons/lu";
 import { MdCropFree, MdChevronRight } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { IoMdHome } from "react-icons/io";
-import { RxButton } from "react-icons/rx";
 
 import { welcomeTechnology } from "../constants/welcome";
+import UIComponents from "../components/ui-components";
+import CodeSnippets from "../components/code-snippets";
 
 function Welcome() {
 
@@ -82,43 +83,7 @@ function Welcome() {
           </div>
 
           {/** Cards */}
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Buttons</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">4 Components</p>
-              </div>
-            </Link>
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Buttons</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">4 Components</p>
-              </div>
-            </Link>
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Buttons</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">4 Components</p>
-              </div>
-            </Link>
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Buttons</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">4 Components</p>
-              </div>
-            </Link>
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Buttons</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">4 Components</p>
-              </div>
-            </Link>
-          </div>
+          <UIComponents />
         </div>
 
         {/** Components UI */}
@@ -134,48 +99,7 @@ function Welcome() {
           </div>
 
           {/** Cards */}
-          <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Leetcode 21</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">Merge Two Sorted Lists</p>
-                <p className="text-[10px] text-center font-mukta font-medium text-zinc-700 dark:text-zinc-300 mt-2 bg-zinc-200 dark:bg-zinc-900 rounded-xl px-2 py-[2px]">Linked List</p>
-              </div>
-            </Link>
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Leetcode 21</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">Merge Two Sorted Lists</p>
-                <p className="text-[10px] text-center font-mukta font-medium text-zinc-700 dark:text-zinc-300 mt-2 bg-zinc-200 dark:bg-zinc-900 rounded-xl px-2 py-[2px]">Linked List</p>
-              </div>
-            </Link>
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Leetcode 21</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">Merge Two Sorted Lists</p>
-                <p className="text-[10px] text-center font-mukta font-medium text-zinc-700 dark:text-zinc-300 mt-2 bg-zinc-200 dark:bg-zinc-900 rounded-xl px-2 py-[2px]">Linked List</p>
-              </div>
-            </Link>
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Leetcode 21</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">Merge Two Sorted Lists</p>
-                <p className="text-[10px] text-center font-mukta font-medium text-zinc-700 dark:text-zinc-300 mt-2 bg-zinc-200 dark:bg-zinc-900 rounded-xl px-2 py-[2px]">Linked List</p>
-              </div>
-            </Link>
-            <Link to=''>
-              <div className="shadow-md shadow-neutral-200 dark:shadow-neutral-900 border border-neutral-200/50 dark:border-neutral-800/50 hover:border-neutral-300 dark:hover:border-neutral-800 w-full pl-4 pr-20 py-5 rounded-md flex flex-col items-start justify-start">
-                <RxButton className="text-2xl mb-4 dark:text-neutral-100" />
-                <h2 className="font-inter text-xs lg:text-sm font-medium text-neutral-900 dark:text-neutral-200">Leetcode 21</h2>
-                <p className="font-ubuntu text-[10px] lg:text-xs font-medium text-neutral-500 dark:text-neutral-300">Merge Two Sorted Lists</p>
-                <p className="text-[10px] text-center font-mukta font-medium text-zinc-700 dark:text-zinc-300 mt-2 bg-zinc-200 dark:bg-zinc-900 rounded-xl px-2 py-[2px]">Linked List</p>
-              </div>
-            </Link>
-          </div>
+          <CodeSnippets />
         </div>
       </div>
     </div>

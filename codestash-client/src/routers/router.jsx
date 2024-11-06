@@ -4,6 +4,7 @@ import App from "../App";
 import Welcome from "../pages/welcome-page";
 import Login from "../components/login";
 import Register from "../components/register";
+import Buttons from "../components/ui/buttons/buttons";
 
 const router = createBrowserRouter([
     {
@@ -14,10 +15,7 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <Welcome />,
             },
-            {
-                path: "/about",
-                element: <h2>Abput page</h2>,
-            },
+            
             {
                 path: "/login",
                 element: <Login />,
@@ -25,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register />,
+            },
+            {
+                path: "/components/buttons",
+                element: <Buttons />,
             },
         ],
     },
