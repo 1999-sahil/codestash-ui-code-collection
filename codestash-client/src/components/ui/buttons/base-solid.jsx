@@ -1,8 +1,41 @@
 import React from 'react'
 import { LuClipboard } from 'react-icons/lu'
 import { FaExpand } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
+import { openModal } from '../../../redux/features/code-modal/codeModalSlice';
 
 function BaseSolid() {
+
+  const dispatch = useDispatch();
+
+  const componentCode = `import React from 'react';
+
+  function BaseSolid() {
+    return (
+      <div className='border border-neutral-200 dark:border-neutral-800 rounded-md w-full bg-white dark:bg-[#111]'>
+        {/* Top section */}
+        <div className='flex items-center justify-between'>
+          <div className='border-b border-r rounded-br-md border-neutral-200 dark:border-neutral-800 w-fit text-[10px] lg:text-xs font-mukta font-normal text-zinc-500 dark:text-zinc-400 px-2 py-1'>
+            <h2>hover effect</h2>
+          </div>
+          <div className='mx-2 cursor-pointer'>
+            <FaExpand className='text-sm' />
+          </div>
+        </div>
+
+        {/* main section */}
+        <div className='flex items-center justify-center py-6 lg:py-8'>
+          <button className='border rounded-full bg-red-600 hover:bg-red-700 text-white px-4 py-2'>
+            Hover Me
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  export default BaseSolid;
+`;
+
   return (
     <div className='border border-neutral-200 dark:border-neutral-800 rounded-md w-full bg-white dark:bg-[#111]'>
         {/** Top section */}
@@ -11,6 +44,7 @@ function BaseSolid() {
             <h2>hover effect</h2>
           </div>
           <div
+            onClick={() => dispatch(openModal(componentCode))}
             className='mx-2 cursor-pointer text-neutral-500 dark:text-neutral-400 text-sm hover:text-neutral-700 dark:hover:text-neutral-200'
           >
             <FaExpand className='text-sm' />
