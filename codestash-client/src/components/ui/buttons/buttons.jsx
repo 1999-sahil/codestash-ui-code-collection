@@ -1,6 +1,7 @@
 import React from 'react'
 import BaseSolid from './base-solid'
 import Modal from '../../modal'
+import HoverButton from './hover-button'
 
 function Buttons() {
   return (
@@ -147,7 +148,9 @@ function Buttons() {
         </h2>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
+            <HoverButton />
             <BaseSolid />
+            
             <Modal />
         </div>
         
