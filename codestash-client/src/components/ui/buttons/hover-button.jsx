@@ -1,9 +1,9 @@
 import React from 'react'
 import { FaExpand } from 'react-icons/fa'
-import { LuClipboard } from 'react-icons/lu'
 import { useDispatch } from 'react-redux';
 import { setCode, setCopied } from '../../../redux/features/copy/copySlice';
 import { openModal } from '../../../redux/features/code-modal/codeModalSlice';
+import tailwindImg from "../../../assets/homepage/tailwind.svg";
 
 function HoverButton() {
     const dispatch = useDispatch();
@@ -64,12 +64,13 @@ function HoverButton() {
       </div>
 
       {/** copy section */}
-      <button
-        onClick={handleCopy}
-        className="absolute bottom-0 flex items-center justify-center w-full gap-2 border-t rounded-bl-md rounded-br-md border-neutral-200 dark:border-neutral-900 text-xs font-openSans font-medium text-neutral-700 dark:text-neutral-200 bg-zinc-50 dark:bg-neutral-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 cursor-pointer py-1.5">
-        <LuClipboard />
-        <h2 className="">Copy</h2>
-      </button>
+      <div className="absolute bottom-0 flex items-center justify-between w-full px-3 py-1.5 gap-2 border-t rounded-bl-md rounded-br-md border-neutral-200/50 dark:border-neutral-900">
+        <img
+          src={tailwindImg}
+          alt=""
+          className="w-4 h-4"
+        />
+      </div>
     </div>
   )
 }
