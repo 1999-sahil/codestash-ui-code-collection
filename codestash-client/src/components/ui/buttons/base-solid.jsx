@@ -17,7 +17,7 @@ function BaseSolid() {
         <h2>hover effect</h2>
       </div>
       <div className='mx-2 cursor-pointer'>
-        <FaExpand className='text-sm' />
+        <FaExpand className='text-sm' />a
       </div>
     </div>
 

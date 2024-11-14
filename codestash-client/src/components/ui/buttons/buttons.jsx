@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BaseSolid from "./base-solid";
 import Modal from "../../modal";
 import HoverButton from "./hover-button";
+import { FaExpand } from "react-icons/fa";
+import tailwindImg from "../../../assets/homepage/tailwind.svg";
+import { openModal } from "../../../redux/features/code-modal/codeModalSlice";
+import { useDispatch } from "react-redux";
 
 function Buttons() {
+
+  const [uiData, setUiData] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("/data.json");
+      const jsonData = await response.json();
+      setUiData(jsonData);
+    };
+
+    fetchData();
+  }, []);
+
+  if (!uiData || uiData.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  console.log("JSON DATA:", uiData);
+
   return (
     <div className="flex flex-col gap-5 lg:px-4">
       <div className="w-full flex items-center justify-center">
@@ -14,10 +38,10 @@ function Buttons() {
             height="15px"
             viewBox="0 0 128 128"
             xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
             aria-hidden="true"
             role="img"
-            class="iconify iconify--noto"
+            className="iconify iconify--noto"
             preserveAspectRatio="xMidYMid meet"
           >
             <path
@@ -54,9 +78,9 @@ function Buttons() {
               x2="44.617"
               y2="79.699"
             >
-              <stop offset=".024" stop-color="#8f4700"></stop>
+              <stop offset=".024" stopColor="#8f4700"></stop>
 
-              <stop offset="1" stop-color="#703e2d"></stop>
+              <stop offset="1" stopColor="#703e2d"></stop>
             </linearGradient>
 
             <path
@@ -162,13 +186,70 @@ function Buttons() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         <HoverButton />
         <BaseSolid />
-        <HoverButton />
-        <BaseSolid />
-        <HoverButton />
-        <BaseSolid />
 
         <Modal />
       </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {uiData.map((item, index) => (
+          <div
+            key={index}
+            className="relative border border-neutral-200 dark:border-neutral-800 rounded-md w-full bg-white h-[160px] dark:bg-[#111]"
+          >
+            {/** Top section */}
+            <div className="flex items-center justify-between">
+              <div className="border-b border-r rounded-br-md border-neutral-200 dark:border-neutral-800 w-fit text-[10px] lg:text-xs font-mukta font-normal text-zinc-500 dark:text-zinc-400 px-2 py-1">
+                <h2>{item.effect}</h2>
+              </div>
+              <div
+                onClick={() => dispatch(openModal(item.code))}
+                className="mx-2 cursor-pointer text-neutral-500 dark:text-neutral-400 text-sm hover:text-neutral-700 dark:hover:text-neutral-200"
+              >
+                <FaExpand className="text-sm cursor-pointer" />
+              </div>
+            </div>
+            {/** main button section */}
+            <div className="absolute top-10 bottom-0 right-0 left-0 flex items-center justify-center">
+              <div
+                className=""
+                dangerouslySetInnerHTML={{ __html: item.code }}
+              />
+            </div>
+
+            {/** bottom section */}
+            <div className="absolute bottom-0 flex items-center justify-between w-full px-3 py-1.5 gap-2 border-t rounded-bl-md rounded-br-md border-neutral-200/50 dark:border-neutral-900">
+              <img src={tailwindImg} alt="" className="w-4 h-4" />
+            </div>
+          </div>
+        ))}
+        <Modal />
+      </div>
+      {uiData.map((data, index) => (
+      <iframe
+        key={index}
+        srcDoc={`<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>${data.title}</title>
+            <!-- Link to Tailwind CSS v3.x -->
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+          </head>
+          <body class="flex justify-center items-center h-screen">
+            <div class="p-5">
+              ${data.code}
+            </div>
+          </body>
+          </html>`}
+        title={data.title}
+        width="50%"
+        height="200px"
+        frameBorder="2"
+        className="border rounded-md shadow-lg prose"
+        style={{ maxWidth: '100%' }}  // Ensure it is responsive
+      />
+    ))}
     </div>
   );
 }

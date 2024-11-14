@@ -15,14 +15,42 @@
 }
 
 .scrollbar-custom::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track color */
+  background: red; /* Track color */
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: #888; /* Scrollbar thumb color */
+  background-color: green; /* Scrollbar thumb color */
   border-radius: 2px; /* Round edges */
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
   background-color: #555; /* Hover color for thumb */
+}
+
+
+/* Tailwind classes (if you have a Tailwind config) */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.code-card {
+  margin-bottom: 20px;
+}
+
+.code-ui {
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #f9fafb; /* Light background for code UI */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-snippet {
+  margin-top: 20px;
+  background-color: #2d2d2d;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
 }

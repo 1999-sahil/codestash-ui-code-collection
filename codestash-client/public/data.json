@@ -1,0 +1,56 @@
+[
+  {
+    "_id": 1,
+    "title": "Simple button",
+    "effect": "hover effect",
+    "code": "<a href=\"#_\" class=\"rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600 text-indigo-600 bg-white hover:bg-indigo-600\"><span class=\"absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease\"></span><span class=\"relative text-indigo-600 transition duration-300 group-hover:text-white ease\">Button Text</span></a>"
+  },
+  {
+    "_id": 2,
+    "title": "Green Hover Button",
+    "effect": "hover effect with gradient",
+    "code": "<a href=\"#_\" class=\"relative rounded px-5 py-2.5 overflow-hidden group bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300\"><span class=\"absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease\"></span><span class=\"relative\">Button Text</span></a>"
+  },
+  {
+    "_id": 3,
+    "title": "Black button",
+    "effect": "hover effect",
+    "code": "<a href=\"#_\" class=\"relative inline-block text-lg group\"><span class=\"relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white\"><span class=\"absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50\"></span><span class=\"absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease\"></span><span class=\"relative\">Button Text</span></span><span class=\"absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0\" data-rounded=\"rounded-lg\"></span></a>"
+  },
+  {
+    "_id": 4,
+    "title": "Lock button",
+    "effect": "hover",
+    "code": "<a href=\"#_\" class=\"inline-flex overflow-hidden text-white bg-gray-900 rounded group\"><span class=\"px-3.5 py-2 text-white bg-purple-500 group-hover:bg-purple-600 flex items-center justify-center\"><svg class=\"w-5 h-5\" fill=\"none\" stroke=\"currentColor\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z\"></path></svg></span><span class=\"pl-4 pr-5 py-2.5\">Button Text</span></a>"
+  },
+  {
+    "_id": 5,
+    "title": "Button 5",
+    "effect": "hover",
+    "code": "<a href=\"#_\" class=\"relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-red-500 rounded-xl group\"><span class=\"absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-red-700 rounded group-hover:-mr-4 group-hover:-mt-4\"><span class=\"absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white\"></span></span><span class=\"absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-red-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0\"></span><span class=\"relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white\">Button Text</span></a>"
+  },
+  {
+    "_id": 6,
+    "title": "Button 6",
+    "effect": "hover",
+    "code": "<a href=\"#_\" class=\"relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-white rounded hover:bg-white group\"><span class=\"w-48 h-48 rounded rotate-[-40deg] bg-purple-600 absolute bottom-0 left-0 -translate-x-full ease-out duration-500 transition-all translate-y-full mb-9 ml-9 group-hover:ml-0 group-hover:mb-32 group-hover:translate-x-0\"></span><span class=\"relative w-full text-left text-black transition-colors duration-300 ease-in-out group-hover:text-white\">Button Text</span></a>"
+  },
+  {
+    "_id": 7,
+    "title": "Button 7",
+    "effect": "hover",
+    "code": "<a href=\"#_\" class=\"relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-black dark:text-white rounded-md shadow-2xl group\"><span class=\"absolute inset-0 w-full h-full transition duration-300 ease-out opacity-0 bg-gradient-to-br from-pink-600 via-purple-700 to-blue-400 group-hover:opacity-100\"></span><span class=\"absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3\"></span><span class=\"absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5\"></span><span class=\"absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5\"></span><span class=\"absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5\"></span><span class=\"absolute inset-0 w-full h-full border border-white rounded-md opacity-10\"></span><span class=\"absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5\"></span><span class=\"relative\">Button Text</span></a>"
+  },
+  {
+    "_id": 8,
+    "title": "Button 8",
+    "effect": "hover",
+    "code": "<a href=\"#_\" class=\"relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-mono font-medium tracking-tighter text-white bg-gray-800 rounded-lg group\"><span class=\"absolute w-0 h-0 transition-all duration-500 ease-out bg-green-500 rounded-full group-hover:w-56 group-hover:h-56\"></span><span class=\"absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-gray-700\"></span><span class=\"relative\">Button Text</span></a>"
+  },
+  {
+    "_id": 9,
+    "title": "Button 9",
+    "effect": "Test Button",
+    "code": "<div class=\"bg-red-400\">Test Button</div>"
+  }
+]

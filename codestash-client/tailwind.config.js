@@ -3,7 +3,9 @@ export default {
   darkMode: "class",
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{html,js,ts,jsx,tsx,json}",
+    "./components/**/*.{html,js,ts,jsx,tsx,json}",
+    "./public/**/*.{html,js,ts,jsx,tsx,json}",
   ],
   theme: {
     extend: {
@@ -18,5 +20,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/typography")
+  ],
 }

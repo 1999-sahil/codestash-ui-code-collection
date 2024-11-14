@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../redux/features/code-modal/codeModalSlice";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -58,10 +58,9 @@ function Modal() {
             <SyntaxHighlighter
               language="javascript"
               style={a11yDark}
-              showInlineNumbers
               customStyle={{
                 borderRadius: "6px",
-                whiteSpace: "nowrap",
+                minHeight: "200px",
               }}
             >
               {code}
