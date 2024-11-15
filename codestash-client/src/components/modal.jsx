@@ -1,12 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModal } from "../redux/features/code-modal/codeModalSlice";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { IoClose } from "react-icons/io5";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
+import { closeModal } from "../redux/features/code-modal/codeModalSlice";
+import { setCopied } from "../redux/features/copy/copySlice";
+
+import { IoClose } from "react-icons/io5";
 import { FiClipboard } from "react-icons/fi";
 import { IoMdCode } from "react-icons/io";
-import { setCopied } from "../redux/features/copy/copySlice";
 import { FaCheck } from "react-icons/fa6";
 
 function Modal() {
@@ -25,6 +27,8 @@ function Modal() {
       }, 2000);
     });
   };
+
+  console.log("Code: ", code);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -56,11 +60,15 @@ function Modal() {
         <div className="max-h-[60vh] overflow-x-auto overflow-y-auto scrollbar-custom">
           <pre className="rounded-md text-[8px] md:text-xs text-left min-h-[20vh] max-w-full">
             <SyntaxHighlighter
-              language="javascript"
+              language="html"
               style={a11yDark}
+              wrapLines
+              wrapLongLines
               customStyle={{
                 borderRadius: "6px",
                 minHeight: "200px",
+                padding: "16px",
+                whiteSpace: "pre-wrap"
               }}
             >
               {code}

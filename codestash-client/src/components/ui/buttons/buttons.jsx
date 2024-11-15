@@ -6,27 +6,44 @@ import { FaExpand } from "react-icons/fa";
 import tailwindImg from "../../../assets/homepage/tailwind.svg";
 import { openModal } from "../../../redux/features/code-modal/codeModalSlice";
 import { useDispatch } from "react-redux";
+import { useFetchAllButtonsQuery } from "../../../redux/features/buttons/buttonsApi";
+import { TbError404 } from "react-icons/tb";
+import { LuComponent } from "react-icons/lu";
+import { AiOutlineLoading } from 'react-icons/ai';
 
 function Buttons() {
-
-  const [uiData, setUiData] = useState([]);
   const dispatch = useDispatch();
+  const { data, isLoading, isError } = useFetchAllButtonsQuery();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/data.json");
-      const jsonData = await response.json();
-      setUiData(jsonData);
-    };
+  const buttons = data?.buttons || []; 
 
-    fetchData();
-  }, []);
+  console.log("DB Data: ", buttons);
 
-  if (!uiData || uiData.length === 0) {
-    return <div>Loading...</div>;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center gap-2 h-screen text-zinc-500 font-openSans text-sm">
+        {/* Example loading spinner */}
+        <div className="animate-spin">
+          <AiOutlineLoading />
+        </div>
+        <h2>Loading...</h2>
+      </div>
+    );
   }
 
-  console.log("JSON DATA:", uiData);
+  if (isError) {
+    return <div className="flex items-center justify-center gap-2 h-screen">
+      <TbError404 className="text-lg text-red-500" />
+      <h2 className="text-sm font-openSans text-zinc-500 font-normal">Error loading data...</h2>
+    </div>;
+  }
+
+  if (buttons.length === 0) {
+    return <div className="flex items-center justify-center gap-2 h-screen text-sm text-zinc-500">
+    <LuComponent className="" />
+    <h2 className="font-openSans font-normal">No component available</h2>
+  </div>;
+  }
 
   return (
     <div className="flex flex-col gap-5 lg:px-4">
@@ -179,22 +196,16 @@ function Buttons() {
         </h2>
       </div>
 
-      <h2 className="text-2xl lg:text-3xl my-2 lg:my-4 font-bold font-openSans text-neutral-900 dark:text-neutral-100">
+      <h2 className="text-2xl lg:text-3xl my-2 lg:my-6 font-bold font-openSans text-neutral-900 dark:text-neutral-100">
         Button Components
       </h2>
 
+      {/** Render Buttons from DB data */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        <HoverButton />
-        <BaseSolid />
-
-        <Modal />
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {uiData.map((item, index) => (
+        {buttons.map((item, index) => (
           <div
             key={index}
-            className="relative border border-neutral-200 dark:border-neutral-800 rounded-md w-full bg-white h-[160px] dark:bg-[#111]"
+            className="relative w-full h-[180px] border border-neutral-200 dark:border-neutral-800 rounded-md bg-white dark:bg-[#111]"
           >
             {/** Top section */}
             <div className="flex items-center justify-between">
@@ -209,7 +220,7 @@ function Buttons() {
               </div>
             </div>
             {/** main button section */}
-            <div className="absolute top-10 bottom-0 right-0 left-0 flex items-center justify-center">
+            <div className="absolute top-8 bottom-8 right-0 left-0 flex items-center justify-center">
               <div
                 className=""
                 dangerouslySetInnerHTML={{ __html: item.code }}
@@ -224,32 +235,6 @@ function Buttons() {
         ))}
         <Modal />
       </div>
-      {uiData.map((data, index) => (
-      <iframe
-        key={index}
-        srcDoc={`<!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>${data.title}</title>
-            <!-- Link to Tailwind CSS v3.x -->
-            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
-          </head>
-          <body class="flex justify-center items-center h-screen">
-            <div class="p-5">
-              ${data.code}
-            </div>
-          </body>
-          </html>`}
-        title={data.title}
-        width="50%"
-        height="200px"
-        frameBorder="2"
-        className="border rounded-md shadow-lg prose"
-        style={{ maxWidth: '100%' }}  // Ensure it is responsive
-      />
-    ))}
     </div>
   );
 }
