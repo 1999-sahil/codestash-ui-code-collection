@@ -17,11 +17,11 @@ router.post("/admin", async (req, res) => {
     const admin = await User.findOne({ username });
 
     if (!admin) {
-      res.status(404).send({ message: "Admin not found!" });
+      return res.status(404).send({ message: "Admin not found!" });
     }
 
     if (password !== admin.password) {
-        res.status(401).send({ message: "Invalid Credentials!" });
+        return res.status(401).send({ message: "Invalid Credentials!" });
     }
 
     {/**
@@ -54,7 +54,7 @@ router.post("/admin", async (req, res) => {
     });
   } catch (error) {
     console.error("Invalid Admin Credentials!", error);
-    res.status(401).send({ message: "Invalid Admin Credentails!" });
+    return res.status(401).send({ message: "Invalid Admin Credentails!" });
   }
 });
 

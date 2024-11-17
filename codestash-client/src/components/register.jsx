@@ -69,7 +69,7 @@ function Register() {
   };
 
   return (
-    <div className="h-[calc(100vh - 120px)] flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center">
       <div className="fixed inset-0 bg-opacity-50 backdrop-blur-sm z-40" />
 
       <div className="z-50 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-md relative w-[90%] max-w-sm mx-auto shadow-md px-6 py-4">

@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 import { IoIosClose } from 'react-icons/io'
-import { Link, useNavigate } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
-import { useAuth } from '../context/auth-context'
+import { getBaseUrl } from '../utils/baseURL';
 
-function Login() {
-  const [errorMessage, setErrorMessage] = useState("");
-  const { loginUser, signInWithGoogle } = useAuth();
+
+function AdminLogin() {
+    const [errorMessage, setErrorMessage] = useState("");
+
   const navigate = useNavigate();
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -20,8 +19,33 @@ function Login() {
     //console.log(data)
 
     try {
-      await loginUser(data.email, data.password);
-      toast.success("You have been logged in successfully!", {
+      const response = await axios.post(`${getBaseUrl()}/api/auth/admin`, data, {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+      });
+
+      const auth = response.data;
+      //console.log(auth);
+
+      if (auth.token) {
+        localStorage.setItem("token", auth.token);
+        setTimeout(() => {
+            localStorage.removeItem("token");
+            toast.error("Token has been expires! Please Login again", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark"
+            })
+        }, 3600 * 1000);
+      }
+
+      toast.success("Admin logged in successfully!", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: true,
@@ -31,38 +55,15 @@ function Login() {
         progress: undefined,
         theme: "dark"
       });
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setErrorMessage("Please provide valid credentials!");
-      toast.error("Login failed. Please try again!", {
+      toast.error("Invalid Credentials!", {
         position: "top-right",
         autoClose: 3000,
       });
     }
   };
-
-  const handleGoogleSignin = async () => {
-    try {
-      await signInWithGoogle();
-      toast.success("You have been logged in successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark"
-      });
-      navigate("/");
-    } catch (error) {
-      toast.error("Login failed. Please try again!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-    }
-  };
-
   return (
     <div className='h-screen flex justify-center items-center'>
         <div className='fixed inset-0 bg-opacity-50 backdrop-blur-sm z-40' />
@@ -72,16 +73,20 @@ function Login() {
                 <IoIosClose className='text-3xl text-black/70 dark:text-white/70' />
             </Link>
 
-            <h2 className='font-inter font-semibold text-[#111] dark:text-white my-5'>Please Login to continue</h2>
+            <h2 className='flex flex-col font-inter font-semibold text-[#111] dark:text-white my-5'>
+                Welcome back, #Admin
+                <span className='text-zinc-500 font-medium text-sm'>Please Login to continue</span>
+            </h2>
+                
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='mb-4'>
-                    <label className='block mb-1 text-sm font-mukta font-medium dark:text-neutral-200'>Email</label>
+                    <label className='block mb-1 text-sm font-mukta font-medium dark:text-neutral-200'>Username</label>
                     <input
-                      {...register("email", { required: true })}
-                      type='email'
-                      name='email'
-                      id='email'
-                      placeholder='your @email address'
+                      {...register("username", { required: true })}
+                      type='text'
+                      name='username'
+                      id='username'
+                      placeholder='enter your username'
                       className='appearance-none font-mukta text-sm border rounded w-full py-1.5 px-3 leading-tight focus:outline-none focus:shadow dark:text-zinc-100 dark:border-zinc-700 dark:bg-zinc-900'
                     />
                 </div>
@@ -103,23 +108,6 @@ function Login() {
                     </button>
                 </div>
             </form>
-            <p className='align-baseline mb-4 flex items-center gap-1 text-sm font-mukta text-zinc-500 dark:text-zinc-400'>
-                Don't have an account? Please
-                <Link to='/register' className='text-black dark:text-white underline underline-offset-2 font-medium'>
-                  register
-                </Link>
-            </p>
-
-            {/** google sign-in */}
-            <div>
-                <button
-                  onClick={handleGoogleSignin}
-                  className='flex flex-wrap items-center gap-2 justify-center border w-full rounded-md py-1.5 font-openSans text-sm font-medium text-neutral-800 dark:text-neutral-300 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-800'
-                >
-                    <FcGoogle />
-                    Continue with Google
-                </button>
-            </div>
 
             <p className='text-center text-xs my-4 text-neutral-500 dark:text-neutral-400 font-poppins'>
                 @2024 codestash-ui. All rights reserved.
@@ -130,4 +118,4 @@ function Login() {
   )
 }
 
-export default Login
+export default AdminLogin
