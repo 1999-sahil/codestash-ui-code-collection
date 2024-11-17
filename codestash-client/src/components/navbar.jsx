@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Logo from "./logo";
 import Icon from "./icon";
@@ -24,6 +26,16 @@ function Navbar() {
 
   const handleLogout = () => {
     logout();
+    toast.success("You have been logged out successfully!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark"
+    });
   };
 
   const toggleDropdown = () => {
@@ -192,6 +204,7 @@ function Navbar() {
           </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

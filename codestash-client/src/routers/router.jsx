@@ -5,6 +5,7 @@ import Welcome from "../pages/welcome-page";
 import Login from "../components/login";
 import Register from "../components/register";
 import Buttons from "../components/ui/buttons/buttons";
+import PrivateRoute from "./private";
 
 const router = createBrowserRouter([
     {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/components/buttons",
-                element: <Buttons />,
+                element: <PrivateRoute><Buttons /></PrivateRoute>,
             },
         ],
     },

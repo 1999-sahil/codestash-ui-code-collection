@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { FcGoogle } from "react-icons/fc";
 import { IoIosClose } from "react-icons/io";
@@ -20,23 +22,49 @@ function Register() {
 
   // Register new user
   const onSubmit = async (data) => {
-    console.log(data);
+    //console.log(data);
 
     try {
       await registerUser(data.email, data.password);
-      alert("User registered successfully");
+      toast.success("You have been registered successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+      });
     } catch (error) {
       setErrorMessage("Please provide valid credentials!");
+      toast.error("Registration failed. Please try again!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
   };
 
   const handleGoogleSignin = async() => {
     try {
       await signInWithGoogle();
-      alert("Login with google successful!");
+      toast.success("You have been registered successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+      });
       navigate("/");
     } catch (error) {
       alert("Sign up failed");
+      toast.error("Registration failed. Please try again!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -115,6 +143,7 @@ function Register() {
           @2024 codestash-ui. All rights reserved.
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 }

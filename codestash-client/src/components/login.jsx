@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 import { IoIosClose } from 'react-icons/io'
 import { Link, useNavigate } from 'react-router-dom'
@@ -14,24 +17,49 @@ function Login() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   
   const onSubmit = async (data) => {
-    console.log(data)
+    //console.log(data)
 
     try {
       await loginUser(data.email, data.password);
-      alert("Login Successfully!");
+      toast.success("You have been logged in successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+      });
       navigate("/");
     } catch (error) {
       setErrorMessage("Please provide valid credentials!");
+      toast.error("Login failed. Please try again!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
   };
 
   const handleGoogleSignin = async () => {
     try {
       await signInWithGoogle();
-      alert("Login with google successful!");
+      toast.success("You have been logged in successfully!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark"
+      });
       navigate("/");
     } catch (error) {
-      alert("Sign in failed");
+      toast.error("Login failed. Please try again!", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -97,6 +125,7 @@ function Login() {
                 @2024 codestash-ui. All rights reserved.
             </p>
         </div>
+        <ToastContainer />
     </div>
   )
 }
