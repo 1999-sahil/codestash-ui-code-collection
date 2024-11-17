@@ -1,5 +1,6 @@
 import express from "express";
 import { createButton, deleteButtonById, getAllButtons, getButtonById, updateButton } from "../controllers/button.js";
+import verifyAdminToken from "../middleware/adminToken.js";
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ const router = express.Router();
 */}
 
 // CREATE/POST a button
-router.post("/create-button", createButton);
+router.post("/create-button", verifyAdminToken, createButton);
 
 // GET all buttons
 router.get("/all-buttons", getAllButtons);
@@ -22,9 +23,9 @@ router.get("/all-buttons", getAllButtons);
 router.get("/button/:id", getButtonById);
 
 // UPDATE button by id
-router.put("/button/edit/:id", updateButton);
+router.put("/button/edit/:id", verifyAdminToken, updateButton);
 
 // DELETE button by id
-router.delete("/button/:id", deleteButtonById);
+router.delete("/button/:id", verifyAdminToken, deleteButtonById);
 
 export default router;

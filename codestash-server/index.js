@@ -4,6 +4,7 @@ import { configDotenv } from "dotenv";
 import cors from "cors";
 
 import buttonRoute from "./src/routes/button.js";
+import userRoute from "./src/routes/user.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -19,6 +20,7 @@ app.use(cors({
 
 // Routes
 app.use("/api/ui-components/buttons", buttonRoute);
+app.use("/api/auth", userRoute);
 
 
 // Database Connection
