@@ -11,6 +11,8 @@ import { FiClipboard } from "react-icons/fi";
 import { IoMdCode } from "react-icons/io";
 import { FaCheck } from "react-icons/fa6";
 
+import beautify from "js-beautify";
+
 function Modal() {
   const dispatch = useDispatch();
 
@@ -28,7 +30,15 @@ function Modal() {
     });
   };
 
+  // Prettifying the code using js-beautify
+  const prettifiedCode = beautify.html(code, {
+    indent_size: 1,   // Indentation level
+    wrap_line_length: 30, // Optional: Wrap lines at this length
+    max_preserve_newlines: 2, // Optional: Limit newlines preserved
+  });
+
   console.log("Code: ", code);
+  console.log("Formatted Code: ", prettifiedCode);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -67,11 +77,12 @@ function Modal() {
               customStyle={{
                 borderRadius: "6px",
                 minHeight: "200px",
+                maxWidth: "100%",
                 padding: "16px",
-                whiteSpace: "pre-wrap"
+                whiteSpace: "no-wrap"
               }}
             >
-              {code}
+              {prettifiedCode}
             </SyntaxHighlighter>
           </pre>
         </div>

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import BaseSolid from "./base-solid";
-import Modal from "../../modal";
-import HoverButton from "./hover-button";
-import { FaExpand } from "react-icons/fa";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { LiveProvider, LivePreview, LiveError } from "react-live";
+
 import tailwindImg from "../../../assets/homepage/tailwind.svg";
 import { openModal } from "../../../redux/features/code-modal/codeModalSlice";
-import { useDispatch } from "react-redux";
 import { useFetchAllButtonsQuery } from "../../../redux/features/buttons/buttonsApi";
+import Modal from "../../modal";
+
+import { FaExpand } from "react-icons/fa";
 import { TbError404 } from "react-icons/tb";
 import { LuComponent } from "react-icons/lu";
 import { AiOutlineLoading } from 'react-icons/ai';
@@ -221,10 +222,19 @@ function Buttons() {
             </div>
             {/** main button section */}
             <div className="absolute top-8 bottom-8 right-0 left-0 flex items-center justify-center">
-              <div
+              {/**
+               * <div
                 className=""
                 dangerouslySetInnerHTML={{ __html: item.code }}
               />
+               */}
+
+              <LiveProvider code={item.code}>
+                <div className="">
+                  <LivePreview />
+                  <LiveError className="text-red-800 bg-red-100" />
+                </div>
+              </LiveProvider>
             </div>
 
             {/** bottom section */}
