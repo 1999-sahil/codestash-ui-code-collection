@@ -17,3 +17,72 @@
         },    
   */
 }
+
+
+{/** dashboard */}
+{/*
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import { getBaseUrl } from "../utils/baseURL";
+import { TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
+
+import Loading from "../components/loading";
+import Sidebar from "../components/dashboard/sidebar";
+import DashboardPanel from "../components/dashboard/panel";
+
+function Dashboard() {
+  const [loading, setloading] = useState(true);
+  const [data, setData] = useState({});
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`${getBaseUrl()}/api/admin`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+        });
+        setData(res.data);
+        setloading(false);
+      } catch (error) {
+        console.log("Dashboard Error: ", error);
+        setloading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+  return (
+    <div
+      className={`bg-zinc-100 dark:bg-black grid gap-2 p-2 ${
+        isSidebarExpanded
+          ? "grid-cols-[220px,_1fr]" // Expanded width
+          : "grid-cols-[1fr]" // Default width
+      }`}
+    >
+      {isSidebarExpanded && (
+        <Sidebar
+          isExpanded={isSidebarExpanded}
+          onToggle={() => setIsSidebarExpanded(!isSidebarExpanded)}
+        />
+      )}
+      <DashboardPanel isExpanded={isSidebarExpanded} onSidebarToggle={() => setIsSidebarExpanded(true)} />
+
+      {/* Sidebar toggle button when collapsed */}
+      {/*
+      {!isSidebarExpanded && (
+        <button
+          onClick={() => setIsSidebarExpanded(true)}
+          className="fixed top-4 left-3 z-50 p-1"
+        >
+          <TbLayoutSidebarLeftExpandFilled className="text-2xl text-zinc-500 dark:text-zinc-400" />
+        </button>
+      )}
+        */}
+*/}
