@@ -3,6 +3,8 @@ import App from "../App";
 
 import Welcome from "../pages/welcome-page";
 import Dashboard from "../pages/dashboard";
+import DynamicComponents from "../pages/dynamic-components";
+import DashboardComponents from "../pages/dashboard-components";
 
 import AdminRoute from "./admin";
 import PrivateRoute from "./private";
@@ -11,6 +13,7 @@ import Login from "../components/login";
 import Register from "../components/register";
 import Buttons from "../components/ui/buttons/buttons";
 import AdminLogin from "../components/admin-login";
+import DashboardPanel from "../components/dashboard/panel";
 
 const router = createBrowserRouter([
     {
@@ -48,7 +51,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <AdminRoute><div>Dashboard Home</div></AdminRoute>
+                element: <AdminRoute><DashboardPanel /></AdminRoute>
+            },
+            {
+                path: "components",
+                element: <AdminRoute><DashboardComponents /></AdminRoute>
+            },
+            {
+                path: "components/:componentId",
+                element: <AdminRoute><DynamicComponents /></AdminRoute>
             },
             {
                 path: "add-new-component",
@@ -63,7 +74,7 @@ const router = createBrowserRouter([
                 element: <AdminRoute><div>Manage Components</div></AdminRoute>
             },
         ]
-    }
+    },
 ]);
 
 export default router;

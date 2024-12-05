@@ -9,7 +9,7 @@ import { RiHome2Fill } from 'react-icons/ri'
 function Topbar({ isExpanded }) {
   return (
     <div className={`flex items-center justify-between pr-4 py-2
-      ${isExpanded ? "pl-4" : "pl-10"}
+      ${isExpanded ? "pl-4" : "pl-4"}
     `}>
       {/** breadcrumb */}
       <div className='flex items-center gap-2'>
@@ -23,7 +23,6 @@ function Topbar({ isExpanded }) {
           Home
         </div>
       </div>
-        {/** name and date */}
         <div className='flex items-center w-fit gap-2'>
         <ThemeToggle />
           <img
