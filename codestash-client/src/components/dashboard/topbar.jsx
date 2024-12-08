@@ -8,7 +8,7 @@ import { RiHome2Fill } from 'react-icons/ri'
 
 function Topbar({ isExpanded }) {
   return (
-    <div className={`flex items-center justify-between pr-4 py-2
+    <div className={`flex items-center justify-between pr-4 py-2 border-b border-zinc-200/50 dark:border-zinc-900
       ${isExpanded ? "pl-4" : "pl-4"}
     `}>
       {/** breadcrumb */}

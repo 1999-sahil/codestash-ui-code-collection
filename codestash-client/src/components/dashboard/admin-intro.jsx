@@ -7,7 +7,7 @@ import { BsThreeDots } from 'react-icons/bs'
 
 function AdminIntro() {
   return (
-    <div className='flex items-start justify-between w-full px-4 py-4 border-t border-zinc-200/50 dark:border-zinc-900'>
+    <div className='flex items-start justify-between w-full px-4 py-4'>
         <div className='flex flex-col'>
           <span className='font-bold font-inter text-[#111] dark:text-zinc-100 text-xl md:text-2xl'>
             Welcome back, Sahil

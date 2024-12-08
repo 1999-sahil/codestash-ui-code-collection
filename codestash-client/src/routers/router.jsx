@@ -14,6 +14,7 @@ import Register from "../components/register";
 import Buttons from "../components/ui/buttons/buttons";
 import AdminLogin from "../components/admin-login";
 import DashboardPanel from "../components/dashboard/panel";
+import ManageComponents from "../pages/crud-components/manage-components";
 
 const router = createBrowserRouter([
     {
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "manage-components",
-                element: <AdminRoute><div>Manage Components</div></AdminRoute>
+                element: <AdminRoute><ManageComponents /></AdminRoute>
             },
         ]
     },

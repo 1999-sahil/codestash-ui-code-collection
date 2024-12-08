@@ -16,13 +16,14 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${getBaseUrl()}/api/admin`, {
+        const res = await axios.get(`${getBaseUrl()}/api/ui-components/buttons`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "application/json",
           },
         });
         setData(res.data);
+        console.log("Data: ", res)
         setloading(false);
       } catch (error) {
         console.log("Dashboard Error: ", error);
@@ -65,9 +66,9 @@ function Dashboard() {
       {!isSidebarExpanded && (
         <button
           onClick={() => setIsSidebarExpanded(true)}
-          className="fixed top-4 left-3 z-50 p-1 lg:hidden"
+          className="fixed top-3 left-2 z-50 p-1 animate-bounce hover:animate-none rounded-lg bg-[#333] dark:bg-zinc-200 lg:hidden"
         >
-          <TbLayoutSidebarLeftExpandFilled className="text-xl text-zinc-500 dark:text-zinc-400" />
+          <TbLayoutSidebarLeftExpandFilled className="text-lg text-white dark:text-black" />
         </button>
       )}
     </div>

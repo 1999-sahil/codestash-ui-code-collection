@@ -28,8 +28,45 @@ const buttonsApi = createApi({
             query: () => "/all-buttons",
             providesTags: ["Buttons"]
         }),
+        fetchButtonById: builder.query({
+            query: (id) => `/${id}`,
+            providesTags: (result, error, id) => [{ type: "Buttons", id }]
+        }),
+        addButton: builder.mutation({
+            query: (newButton) => ({
+                url: `/create-button`,
+                method: "POST",
+                body: newButton
+            }),
+            invalidatesTags: ["Buttons"]
+        }),
+        updateButton: builder.mutation({
+            query: ({id, ...rest}) => ({
+                url: `/edit/${id}`,
+                method: "PUT",
+                body: rest,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }),
+            invalidatesTags: ["Buttons"]
+        }),
+        deleteButton: builder.mutation({
+            query: (id) => ({
+                url: `/${id}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ["Buttons"]
+        })
     }),
 });
 
-export const { useFetchAllButtonsQuery } = buttonsApi;
+export const { 
+    useFetchAllButtonsQuery,
+    useFetchButtonByIdQuery,
+    useAddButtonMutation,
+    useUpdateButtonMutation,
+    useDeleteButtonMutation
+} = buttonsApi;
+
 export default buttonsApi;
