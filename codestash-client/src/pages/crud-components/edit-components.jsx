@@ -1,89 +1,69 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CodeMirror, { oneDark } from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 
-import Topbar from "../../components/dashboard/topbar";
+import Topbar from '../../components/dashboard/topbar'
+import { useFetchButtonByIdQuery, useUpdateButtonMutation } from '../../redux/features/buttons/buttonsApi';
+import Loading from '../../components/loading';
 
 import { FaPlus } from "react-icons/fa6";
 import { AiOutlineLoading } from "react-icons/ai";
-import { useAddButtonMutation } from "../../redux/features/buttons/buttonsApi";
+import { MdError } from 'react-icons/md';
+import axios from 'axios';
+import { getBaseUrl } from '../../utils/baseURL';
 
-
-function AddNewComponent() {
+function EditComponents() {
+  const { id } = useParams();
+  const [updateButton] = useUpdateButtonMutation();
+  const { data: buttonData, isLoading, isError, refetch } = useFetchButtonByIdQuery(id);
+  const { register, handleSubmit, setValue, reset } = useForm();
+  const [code, setCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [code, setCode] = useState("")
-  const navigate = useNavigate();
-  const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
-  const [addButton, { isLoading, isError }] = useAddButtonMutation();
+
+  //console.log("Edit: ", buttonData);
 
   const onSubmit = async (data) => {
-    console.log(data);
-
-    const newButtonData = { ...data };
-
-    try {
-      await addButton(newButtonData).unwrap();
-      toast.success("Component added successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark"
-      });
-      reset();
-    } catch (error) {
-      setErrorMessage("Please provide valid credentials!");
-      toast.error("All fields are mandatory. Please try again!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-    }
-  };
-
-  const onSubmitGPT = async (data) => {
-    console.log(data);
-    console.log("Token", localStorage.getItem("token"));
+    const updatedButtonData = {
+      title: data.title,
+      effect: data.effect,
+      code: data.code
+    };
 
     try {
-      const response = await fetch("http://localhost:5000/api/ui-components/buttons/create-button", {
-        method: "POST",
+      await axios.put(`${getBaseUrl()}/api/ui-components/buttons/button/edit/${id}`, updatedButtonData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`, // Replace with your actual admin token
         },
-        body: JSON.stringify({
-          title: data.title,
-          effect: data.effect,
-          tag: data.tag,
-          code: code,
-        }),
       });
-  
-      if (response.status === 403) {
-        throw new Error("Access denied. Admin privileges required.");
-      }
-  
-      if (!response.ok) {
-        throw new Error("Failed to create button.");
-      }
-  
-      const result = await response.json();
-      toast.success("Button created successfully!");
-      console.log(result);
+      toast.success("Component updated successfully!!!")
     } catch (error) {
-      setErrorMessage(error.message);
-      toast.error(error.message);
-      console.log(error);
+      console.log("Failed to update button.")
+      toast.error("Failed to update component.")
     }
   };
-  
+
+  useEffect(() => {
+    //console.log("useeffect data: ", buttonData)
+    if (buttonData) {
+      setValue("title", buttonData.title);
+      setValue("effect", buttonData.effect);
+      setValue("code", buttonData.code);
+      setCode(buttonData.code || "");
+    }
+  }, [buttonData, setValue]);
+
+  if (isLoading) return <Loading />
+  if (isError) return (
+    <div className='w-full h-[100vh] flex items-center justify-center gap-2 font-mukta text-xs font-normal'>
+      <MdError className='text-red-500' />
+      Error fetching button data
+    </div>
+  )
 
   return (
     <div className="bg-white dark:bg-[#0f0f0f] shadow rounded-md border border-zinc-200/50 dark:border-zinc-900 h-[160vh] space-y-4 md:space-y-8">
@@ -91,14 +71,14 @@ function AddNewComponent() {
       <div className="w-[90%] mx-auto border border-zinc-200 dark:border-zinc-900 rounded-md">
         <div className="py-4 px-4 border-b border-zinc-200 dark:border-zinc-900 mb-4 space-y-1">
           <h2 className="text-xl md:text-2xl font-bold font-inter text-[#333] dark:text-zinc-200">
-            Add new Component
+            Edit Component
           </h2>
           <h4 className="text-xs md:text-sm font-normal font-mukta text-neutral-500">
             This information will be displayed publicly so be careful what you
             share.
           </h4>
         </div>
-        <form onSubmit={handleSubmit(onSubmitGPT)} className="px-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="px-4">
           <div className="mb-4">
             <label className="block mb-2 text-sm lg:text-base font-inter font-medium text-neutral-600 dark:text-neutral-300">
               Title
@@ -167,12 +147,12 @@ function AddNewComponent() {
               {isLoading ? (
                 <span className="flex items-center gap-1">
                   <AiOutlineLoading className="animate-spin" />
-                  Add
+                  Updating
                 </span>
               ) : (
                 <span className="flex items-center gap-1">
                   <FaPlus />
-                  Add
+                  Update
                 </span>
               )}
             </button>
@@ -181,7 +161,7 @@ function AddNewComponent() {
       </div>
       <ToastContainer />
     </div>
-  );
+  )
 }
 
-export default AddNewComponent;
+export default EditComponents

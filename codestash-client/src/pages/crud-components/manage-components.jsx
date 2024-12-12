@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
 import {
   useDeleteButtonMutation,
   useFetchAllButtonsQuery,
 } from "../../redux/features/buttons/buttonsApi";
+
 import { MdOutlineDelete } from "react-icons/md";
 import { CiViewTable } from "react-icons/ci";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { IoMdCode } from "react-icons/io";
 
 function ManageComponents({ title }) {
@@ -34,7 +36,7 @@ function ManageComponents({ title }) {
 
   // Handle navigating to Edit Book page
   const handleEditClick = (id) => {
-    navigate(`edit-components/${id}`);
+    navigate(`/edit-components/${id}`);
   };
 
   // Handle viewing the code in a popup
@@ -116,12 +118,12 @@ function ManageComponents({ title }) {
                         {button.effect}
                       </td>
                       <td className="px-6 align-middle text-xs whitespace-nowrap p-4 space-x-4">
-                        <button
-                          onClick={() => handleEditClick(button._id)}
+                        <Link
+                          to={`/dashboard/edit-component/${button._id}`}
                           className="font-medium font-kanit text-[#333] dark:text-zinc-300 mr-2 hover:underline underline-offset-2"
                         >
                           Edit
-                        </button>
+                        </Link>
                         <button
                           onClick={() => handleDeleteBook(button._id)}
                           className="rounded-md hover:border-zinc-400 dark:hover:border-zinc-500 border border-zinc-200 dark:border-zinc-800 p-1 text-[#333] dark:text-zinc-400"

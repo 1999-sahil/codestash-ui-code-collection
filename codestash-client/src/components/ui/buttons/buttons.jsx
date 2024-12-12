@@ -232,7 +232,7 @@ function Buttons() {
               <LiveProvider code={item.code}>
                 <div className="">
                   <LivePreview />
-                  <LiveError className="text-red-800 bg-red-100" />
+                  <LiveError className="text-red-800 dark:text-red-400 bg-red-100 dark:bg-red-950 text-xs whitespace-wrap text-wrap px-2 py-3 w-fit lg:mx-auto" />
                 </div>
               </LiveProvider>
             </div>

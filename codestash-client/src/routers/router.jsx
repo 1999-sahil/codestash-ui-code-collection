@@ -5,9 +5,11 @@ import Welcome from "../pages/welcome-page";
 import Dashboard from "../pages/dashboard";
 import DynamicComponents from "../pages/dynamic-components";
 import DashboardComponents from "../pages/dashboard-components";
-import ManageComponents from "../pages/crud-components/manage-components";
 import Playground from "../pages/playground/playground";
+
+import ManageComponents from "../pages/crud-components/manage-components";
 import AddNewComponent from "../pages/crud-components/add-new-component";
+import EditComponents from "../pages/crud-components/edit-components";
 
 import AdminRoute from "./admin";
 import PrivateRoute from "./private";
@@ -73,8 +75,8 @@ const router = createBrowserRouter([
                 element: <AdminRoute><AddNewComponent /></AdminRoute>
             },
             {
-                path: "edit-component",
-                element: <AdminRoute><div>Edit Component</div></AdminRoute>
+                path: "edit-component/:id",
+                element: <AdminRoute><EditComponents /></AdminRoute>
             },
             {
                 path: "manage-components",

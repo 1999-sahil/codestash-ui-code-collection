@@ -45,7 +45,7 @@ export const getButtonById = async(req, res) => {
 };
 
 // UPDATE button by id
-export const updateButton = async(req, res) => {
+export const updateButtonById = async(req, res) => {
     try {
         const { id } = req.params;
         const updatedButton = await Button.findByIdAndUpdate(id, req.body, { new: true });

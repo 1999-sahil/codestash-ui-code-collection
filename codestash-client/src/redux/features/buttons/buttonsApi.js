@@ -29,7 +29,7 @@ const buttonsApi = createApi({
             providesTags: ["Buttons"]
         }),
         fetchButtonById: builder.query({
-            query: (id) => `/${id}`,
+            query: (id) => `/button/${id}`,
             providesTags: (result, error, id) => [{ type: "Buttons", id }]
         }),
         addButton: builder.mutation({
@@ -42,7 +42,7 @@ const buttonsApi = createApi({
         }),
         updateButton: builder.mutation({
             query: ({id, ...rest}) => ({
-                url: `/edit/${id}`,
+                url: `/button/edit/${id}`,
                 method: "PUT",
                 body: rest,
                 headers: {
@@ -53,7 +53,7 @@ const buttonsApi = createApi({
         }),
         deleteButton: builder.mutation({
             query: (id) => ({
-                url: `/${id}`,
+                url: `/button/${id}`,
                 method: "DELETE"
             }),
             invalidatesTags: ["Buttons"]
