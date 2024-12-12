@@ -2,7 +2,7 @@ import React from 'react'
 import { MdAdd, MdOutlineEdit } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
-function CRUDButton({ manage, add, manageSrc }) {
+function CRUDButton({ manage, add, manageSrc, addSrc }) {
   return (
     <div className='flex items-center gap-3'>
         <Link to={manageSrc}>
@@ -11,7 +11,7 @@ function CRUDButton({ manage, add, manageSrc }) {
                 Manage {manage}s
             </button>
         </Link>
-        <Link to="">
+        <Link to={addSrc}>
             <button className='flex items-center gap-1 text-xs font-medium font-mukta text-white dark:text-black bg-zinc-800 dark:bg-zinc-100 rounded-md px-3 py-1.5'>
                 <MdAdd />
                 Add New {add}

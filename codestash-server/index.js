@@ -5,6 +5,7 @@ import cors from "cors";
 
 import buttonRoute from "./src/routes/button.js";
 import userRoute from "./src/routes/user.js";
+import adminRoutes from "./src/stats/admin.stats.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -21,6 +22,7 @@ app.use(cors({
 // Routes
 app.use("/api/ui-components/buttons", buttonRoute);
 app.use("/api/auth", userRoute);
+app.use("/api/admin", adminRoutes);
 
 
 // Database Connection

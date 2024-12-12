@@ -134,7 +134,7 @@ function ManageComponents({ title }) {
                 ) : (
                   <tr className="border-b border-zinc-200 dark:border-zinc-800 w-full">
                     <td colSpan="5" className="text-center py-4 text-gray-500 text-xs font-inter font-medium">
-                      No buttons found.
+                      No {title} found.
                     </td>
                   </tr>
                 )}

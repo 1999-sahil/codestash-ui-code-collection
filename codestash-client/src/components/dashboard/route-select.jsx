@@ -7,6 +7,7 @@ import { FiHome } from "react-icons/fi";
 import { MdDashboard, MdAnalytics } from "react-icons/md";
 import { IoNotifications } from "react-icons/io5";
 import { AiFillSetting } from "react-icons/ai";
+import { HiMiniCodeBracketSquare } from "react-icons/hi2"
 
 function RouteSelect() {
   const location = useLocation();
@@ -51,12 +52,21 @@ function RouteSelect() {
       {/* Other static routes */}
       <div className="flex flex-col gap-1">
         <Route
+          href="/dashboard/playground"
+          title="Playground"
+          icon={HiMiniCodeBracketSquare}
+          selected={selectedRoute === "/dashboard/playground"}
+          onClick={() => handleRouteClick("/dashboard/playground")}
+        />
+        {/*
+        <Route
           href="/dashboard/analytics"
           title="Analytics"
           icon={MdAnalytics}
           selected={selectedRoute === "/dashboard/analytics"}
           onClick={() => handleRouteClick("/dashboard/analytics")}
         />
+        */}
         <Route
           href="/dashboard/notifications"
           title="Notifications"

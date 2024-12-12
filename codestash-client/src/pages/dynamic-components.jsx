@@ -23,7 +23,7 @@ function DynamicComponents() {
   }
 
   return (
-    <div className='bg-white dark:bg-[#0f0f0f] shadow rounded-md border border-zinc-200/50 dark:border-zinc-900 h-full'>
+    <div className='bg-white dark:bg-[#0f0f0f] shadow rounded-md border border-zinc-200/50 dark:border-zinc-900 h-[160vh]'>
       <Topbar />
       <div className="px-4 mb-6 flex flex-col lg:flex-row gap-4 lg:items-end justify-between mt-6">
         <div className=""> 
@@ -37,7 +37,8 @@ function DynamicComponents() {
         <CRUDButton
           manage={component.title}
           add={component.title}
-          manageSrc="manage-components"
+          manageSrc="/dashboard/manage-components"
+          addSrc="/dashboard/add-new-component"
         />
       </div>
       {/* Render your component-specific content here */}

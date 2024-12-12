@@ -16,7 +16,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`${getBaseUrl()}/api/ui-components/buttons`, {
+        const res = await axios.get(`${getBaseUrl()}/api/admin`, { // /api/ui-components/buttons
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "application/json",

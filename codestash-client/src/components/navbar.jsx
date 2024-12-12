@@ -14,6 +14,7 @@ import { IoClose } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
 import { LuUser, LuLogOut } from "react-icons/lu";
 import { CiSettings } from "react-icons/ci";
+import { MdOutlineAdminPanelSettings } from "react-icons/md";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -112,11 +113,19 @@ function Navbar() {
                 )}
               </div>
             ) : (
+              <div className="flex items-center gap-3">
               <Link to="/login">
                 <button className="font-inter text-xs font-medium bg-neutral-800 dark:bg-neutral-100 hover:bg-opacity-95 dark:hover:bg-opacity-90 px-3 py-1.5 rounded-md text-white dark:text-neutral-900">
                   Login
                 </button>
               </Link>
+              <Link to="/admin">
+                <button className="flex items-center gap-1 px-3 py-1.5 rounded-md text-[#111] bg-neutral-200 hover:bg-neutral-300/50 dark:bg-neutral-800 dark:hover:bg-neutral-800/50 dark:text-zinc-300">
+                  <MdOutlineAdminPanelSettings />
+                  <h2 className="font-inter text-xs font-medium">Admin</h2>
+                </button>
+              </Link>
+              </div>
             )}
           </div>
 
@@ -187,11 +196,18 @@ function Navbar() {
                   </button>
                 </div>
               ) : (
-                <Link to="/login" onClick={toggleMenu}>
+                <div className="flex flex-col gap-2">
+                  <Link to="/login" onClick={toggleMenu}>
                   <h2 className="text-base font-inter font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-white">
                     Login
                   </h2>
                 </Link>
+                <Link to="/admin" onClick={toggleMenu}>
+                <h2 className="text-base font-inter font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-white">
+                  Admin
+                </h2>
+              </Link>
+                </div>
               )}
             </nav>
 

@@ -5,6 +5,9 @@ import Welcome from "../pages/welcome-page";
 import Dashboard from "../pages/dashboard";
 import DynamicComponents from "../pages/dynamic-components";
 import DashboardComponents from "../pages/dashboard-components";
+import ManageComponents from "../pages/crud-components/manage-components";
+import Playground from "../pages/playground/playground";
+import AddNewComponent from "../pages/crud-components/add-new-component";
 
 import AdminRoute from "./admin";
 import PrivateRoute from "./private";
@@ -14,7 +17,6 @@ import Register from "../components/register";
 import Buttons from "../components/ui/buttons/buttons";
 import AdminLogin from "../components/admin-login";
 import DashboardPanel from "../components/dashboard/panel";
-import ManageComponents from "../pages/crud-components/manage-components";
 
 const router = createBrowserRouter([
     {
@@ -59,12 +61,16 @@ const router = createBrowserRouter([
                 element: <AdminRoute><DashboardComponents /></AdminRoute>
             },
             {
+                path: "playground",
+                element: <AdminRoute><Playground /></AdminRoute>
+            },
+            {
                 path: "components/:componentId",
                 element: <AdminRoute><DynamicComponents /></AdminRoute>
             },
             {
                 path: "add-new-component",
-                element: <AdminRoute><div>Add Component</div></AdminRoute>
+                element: <AdminRoute><AddNewComponent /></AdminRoute>
             },
             {
                 path: "edit-component",
