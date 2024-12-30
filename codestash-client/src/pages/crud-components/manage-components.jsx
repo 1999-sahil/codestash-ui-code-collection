@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
@@ -8,29 +9,34 @@ import {
   useFetchAllButtonsQuery,
 } from "../../redux/features/buttons/buttonsApi";
 
-import { MdOutlineDelete } from "react-icons/md";
+import { MdClose, MdOutlineDelete } from "react-icons/md";
 import { CiViewTable } from "react-icons/ci";
 import { IoMdCode } from "react-icons/io";
 
 function ManageComponents({ title }) {
   const navigate = useNavigate();
   const { data: buttons, refetch } = useFetchAllButtonsQuery();
-  console.log("All Fetched Buttons: ", buttons);
+  //console.log("All Fetched Buttons: ", buttons);
 
   const [deleteButton] = useDeleteButtonMutation();
 
   const [popupVisible, setPopupVisible] = useState(false);
   const [selectedCode, setSelectedCode] = useState("");
 
+  const [warningPopup, setWarningPopup] = useState(false);
+  const [selectedComponent, setSelectedComponent] = useState(null);
+
   // Handle deleting a book
   const handleDeleteBook = async (id) => {
+    //console.log("clicked button id", id);
     try {
       await deleteButton(id).unwrap();
-      alert("Button deleted successfully!");
+      toast.success("Component deleted successfully!");
       refetch();
+      setWarningPopup(false);
     } catch (error) {
-      console.error("Failed to delete button:", error.message);
-      alert("Failed to delete button. Please try again.");
+      console.error("Failed to delete component:", error.message);
+      toast.error("Failed to delete component. Please try again.");
     }
   };
 
@@ -43,6 +49,13 @@ function ManageComponents({ title }) {
   const handleViewCode = (code) => {
     setSelectedCode(code);
     setPopupVisible(true);
+  };
+
+  // Handle delete warning popup
+  const handleDeleteWarning = (data) => {
+    console.log("delete clicked")
+    setWarningPopup(true);
+    setSelectedComponent(data);
   };
 
   return (
@@ -125,7 +138,7 @@ function ManageComponents({ title }) {
                           Edit
                         </Link>
                         <button
-                          onClick={() => handleDeleteBook(button._id)}
+                          onClick={() => handleDeleteWarning(button)}
                           className="rounded-md hover:border-zinc-400 dark:hover:border-zinc-500 border border-zinc-200 dark:border-zinc-800 p-1 text-[#333] dark:text-zinc-400"
                         >
                           <MdOutlineDelete className="" />
@@ -178,6 +191,42 @@ function ManageComponents({ title }) {
               Close
             </button>
           </div>
+        </div>
+      )}
+
+      {/** popup for delete warning */}
+      {warningPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white dark:bg-zinc-950 border border-zinc-500 dark:border-zinc-800 rounded-lg max-w-2xl w-[98%]">
+            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 py-3 px-3">
+            <h2 className="text-sm font-semibold font-inter text-[#333] dark:text-zinc-300">
+              Delete {title}
+            </h2>
+            <button
+              onClick={() => setWarningPopup(false)}
+              className="hover:bg-zinc-300 dark:hover:bg-zinc-700 p-1 rounded-md"
+            >
+              <MdClose className="text-[#333] dark:text-zinc-200" />
+            </button>
+            </div>
+            <div className="flex flex-col items-center justify-center py-8">
+              <span className="text-2xl font-poppins font-semibold text-[#333] dark:text-zinc-300">
+                {selectedComponent?.title}
+              </span>
+              <span className="text-xl font-openSans font-medium text-zinc-800 dark:text-zinc-400">
+                {selectedComponent?.effect}
+              </span>
+            </div>
+            <div className="flex items-center justify-center border-t border-zinc-200 dark:border-zinc-800 py-3 px-3">
+              <button 
+                onClick={() => handleDeleteBook(selectedComponent._id)}
+                className="text-xs border dark:border-zinc-200 rounded-md w-[90%] py-2 lg:py-3 font-openSans font-semibold bg-zinc-900 dark:bg-zinc-200 text-zinc-100 dark:text-black hover:bg-opacity-90 dark:hover:bg-opacity-80"
+              >
+                I want to delete this {title}
+              </button>
+            </div>
+          </div>
+          
         </div>
       )}
     </section>

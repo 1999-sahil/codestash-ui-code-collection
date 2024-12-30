@@ -40,7 +40,8 @@ function EditComponents() {
           Authorization: `Bearer ${localStorage.getItem("token")}`, // Replace with your actual admin token
         },
       });
-      toast.success("Component updated successfully!!!")
+      toast.success("Component updated successfully!!!");
+      setErrorMessage("Something went wrong!!!");
     } catch (error) {
       console.log("Failed to update button.")
       toast.error("Failed to update component.")
