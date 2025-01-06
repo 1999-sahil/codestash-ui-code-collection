@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CodeMirror, { oneDark } from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
+import { EditorView } from '@uiw/react-codemirror';
 
 import Topbar from '../../components/dashboard/topbar'
 import { useFetchButtonByIdQuery, useUpdateButtonMutation } from '../../redux/features/buttons/buttonsApi';
@@ -23,6 +24,11 @@ function EditComponents() {
   const { register, handleSubmit, setValue, reset } = useForm();
   const [code, setCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const extensions = [
+    javascript(),
+    EditorView.lineWrapping
+  ];
 
   //console.log("Edit: ", buttonData);
 
@@ -67,7 +73,7 @@ function EditComponents() {
   )
 
   return (
-    <div className="bg-white dark:bg-[#0f0f0f] shadow rounded-md border border-zinc-200/50 dark:border-zinc-900 h-[160vh] space-y-4 md:space-y-8">
+    <div className="bg-white dark:bg-[#0f0f0f] shadow rounded-md border border-zinc-200/50 dark:border-zinc-900 min-h-screen space-y-4 md:space-y-8">
       <Topbar />
       <div className="w-[90%] mx-auto border border-zinc-200 dark:border-zinc-900 rounded-md">
         <div className="py-4 px-4 border-b border-zinc-200 dark:border-zinc-900 mb-4 space-y-1">
@@ -134,10 +140,10 @@ function EditComponents() {
     @codestash-ui. All rights reserved.
     Write your code here.
 */`}
-              extensions={[javascript()]}
+              extensions={extensions}
               theme={oneDark}
               onChange={(value) => setCode(value)}
-              className="border border-neutral-500 dark:border-neutral-700 decoration-transparent text-xs lg:text-sm outline-none rounded"
+              className="w-full border border-neutral-500 dark:border-neutral-700 decoration-transparent text-xs lg:text-sm outline-none rounded"
             />
           </div>
 
